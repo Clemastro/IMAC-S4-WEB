@@ -46,13 +46,11 @@ export default {
 h1 {
     height: 15%;
     padding-left: 2%;
-    padding-top: 2%;
+    padding-bottom: 2%;
     margin: 0%;
-
     font-size: 2vw;
-
     font-family : sans-serif;
-    background: #676F54;
+    background: #84877D;
     color: white;
 }
 
@@ -66,12 +64,17 @@ h1 {
 }
 
 .vesselCardCategories{
-    width: 50%;
-    background: rgb(0, 255, 0);
+    margin: 10px;
+    width: 70%;
+    display: flex;
 }
 
 button{
+    margin: auto;
     width: 30%;
+    border-radius: 10px;
     background: none;
+    color:white;
+    font:bold;
 }
 </style>
