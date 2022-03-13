@@ -2,20 +2,20 @@
 <template>
     <div class="vesselCard">
         <!--Name of the ship-->
-        <h1>{{vesselName}}</h1>
+        <h1>{{vesselData.name}}</h1>
 
         <!--Picture of the ship-->
         <div  class="vesselImg">
             <!--Categorie(s) of the ship-->
             <div class="vesselCardCategories">
                 <!--Status-->
-                <button class="vesselCardCategoriesStatus">{{vesselStatus}}</button>
+                <button class="vesselCardCategoriesStatus">{{vesselData.production_status}}</button>
 
                 <!--Type-->
-                <button class="vesselCardCategoriesType">{{vesselType}}</button>
+                <button class="vesselCardCategoriesType">{{vesselData.type}}</button>
 
                 <!--Focus-->
-                <button class="vesselCardCategoriesFocus">{{vesselFocus}}</button>
+                <button class="vesselCardCategoriesFocus">{{vesselData.focus}}</button>
             </div>
         </div>
     </div>
@@ -25,6 +25,7 @@
 export default {
     name: 'VesselCard',
     props:{
+        vesselData: Array,
         vesselName: String,
         vesselImg: String,
         vesselStatus: String,

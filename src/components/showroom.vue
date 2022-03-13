@@ -1,19 +1,19 @@
 <template>
     <div class="showroom">
         <Selection/>
-        <VesselCard vesselName="Test" vesselStatus="Status" vesselType="Type" vesselFocus="Focus"/>
+        <VesselGalery/>
     </div>
 </template>
 
 <script>
 import Selection from './selection.vue'
-import VesselCard from './vesselCard.vue'
+import VesselGalery from './vesselGalery.vue'
 
 export default {
     name: 'Showroom',
     components:{
         Selection,
-        VesselCard
+        VesselGalery
     }
 }
 </script>
