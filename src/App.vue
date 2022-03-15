@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!--<VesselCard vesselName="Test" vesselStatus="Status" vesselType="Type" vesselFocus="Focus"/>-->
-    <!--<Selection/>-->
     <Showroom/>
   </div>
 </template>

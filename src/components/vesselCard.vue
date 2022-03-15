@@ -7,6 +7,7 @@
         <!--Picture of the ship-->
         <div  class="vesselImg">
             <!--Categorie(s) of the ship-->
+            <img alt="picture-missing" :src="vesselData.media[0].images.background_blur">
             <div class="vesselCardCategories">
                 <!--Status-->
                 <button class="vesselCardCategoriesStatus">{{vesselData.production_status}}</button>
@@ -25,23 +26,21 @@
 export default {
     name: 'VesselCard',
     props:{
-        vesselData: Array,
-        vesselName: String,
-        vesselImg: String,
-        vesselStatus: String,
-        vesselType: String,
-        vesselFocus: String,
+        vesselData: Object,
     }
 }
 </script>
 
 <style scoped>
 .vesselCard{
-    width: 30%;
     aspect-ratio: 3/2;
-
     display:  flex;
     flex-direction: column;
+    transition: 0.5s transform cubic-bezier( 0.07, 0.62, 0.45, 0.93 ) ;
+}
+
+.vesselCard:hover{
+    transform: scale(1.05);
 }
 
 h1 {
@@ -62,12 +61,19 @@ h1 {
     justify-content: flex-end;
     align-items: flex-end;
     background: black;
+    overflow: hidden;
+    position: relative;
+}
+
+img{
+    width: 100%;
 }
 
 .vesselCardCategories{
     margin: 10px;
     width: 70%;
     display: flex;
+    position: absolute;
 }
 
 button{
@@ -77,5 +83,9 @@ button{
     background: none;
     color:white;
     font:bold;
+
+    font-size: 0.5vw;
 }
+
+
 </style>

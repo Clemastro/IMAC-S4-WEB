@@ -30,6 +30,9 @@
 <script>
 export default {
     name: 'Selection',
+    props: {
+        vesselsData: Array
+    }
 }
 </script>
 
