@@ -1,19 +1,19 @@
 <template>
     <div class="vesselGalery">
-        <VesselCard :vesselData="vesselsData[0]"/>
-        <VesselCard :vesselData="vesselsData[1]"/>
-        <VesselCard :vesselData="vesselsData[2]"/>
-        <VesselCard :vesselData="vesselsData[3]"/>
-        <VesselCard :vesselData="vesselsData[4]"/>
-        <VesselCard :vesselData="vesselsData[5]"/>
-        <VesselCard :vesselData="vesselsData[6]"/>
-        <VesselCard :vesselData="vesselsData[7]"/>
-        <!--<VesselCard v-for="vessel in vesselsData" :key="vessel.id" :vesselData="vessel"/>-->
+        <!--<VesselCard  :vesselData="vesselsData[0]"/>-->
+        <!--<VesselCard  
+            :vesselDataName="vesselsData.data[0].name" 
+            :vesselDataImg="vesselsData.data[0].media[0].images.background_blur"
+            :vesselDataStatus="vesselsData.data[0].production_status"
+            :vesselDataType="vesselsData.data[0].type"
+            :vesselDataFocus="vesselsData.data[0].focus"
+            />-->
+        <VesselCard v-for="vessel in vesselsData" :key="vessel.id"  :vesselDataName="vessel.name"/>
+        <p v-for="vessel in vesselsData" :key="vessel.id">he</p>
     </div>
 </template>
 
 <script>
-import getVesselsData from '../services/api/vesselAPI'
 import VesselCard from './vesselCard.vue'
 
 export default {
@@ -21,18 +21,8 @@ export default {
     components: {
         VesselCard
     },
-    data(){
-        return{
-            vesselsData: []
-        }
-    },
-    created:function(){
-        this.retrieveVesselsData()
-    },
-    methods: {
-        async retrieveVesselsData(){
-            this.vesselsData = await getVesselsData()
-        }
+    props:{
+        vesselsData : Array
     }
 }
 </script>

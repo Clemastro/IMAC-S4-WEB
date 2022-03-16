@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style scoped>
+.selection{
+    display: fixed;
+}
+
 .search-bar{
     width: 80%;
     margin-bottom: 50px;

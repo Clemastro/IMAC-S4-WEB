@@ -1,13 +1,14 @@
 <template>
     <div class="showroom">
         <Selection/>
-        <VesselGalery/>
+        <VesselGalery :vesselsData="vesselsData"/>
     </div>
 </template>
 
 <script>
 import Selection from './selection.vue'
 import VesselGalery from './vesselGalery.vue'
+import getVesselsData from '../services/api/vesselAPI.js'
 
 
 
@@ -17,6 +18,19 @@ export default {
     components:{
         Selection,
         VesselGalery
+    },
+    data(){
+        return{
+            vesselsData: []
+        }
+    },
+    created:function(){
+        this.retrieveVesselsData()
+    },
+    methods: {
+        async retrieveVesselsData(){
+            this.vesselsData = await getVesselsData()
+        }
     }
 }
 </script>
@@ -26,9 +40,6 @@ export default {
     padding: 10%;
     display: grid;
     grid-template-columns: 20% 80%;
-}
-
-.vesselCards{
-    display: grid;
+    position: relative;
 }
 </style>
