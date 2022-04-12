@@ -1,6 +1,6 @@
 <template>
     <div class="showroom">
-        <Selection/>
+        <Selection :vesselsData="vesselsData"/>
         <VesselGalery :vesselsData="vesselsData"/>
     </div>
 </template>

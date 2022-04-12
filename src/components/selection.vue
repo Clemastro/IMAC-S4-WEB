@@ -7,21 +7,18 @@
         <!--Filters-->
         <div  class="filters">
             <select class="filterStatus">
-                <option>choix 1</option>
-                <option>choix 2</option>
-                <option>choix 3</option>
+                <option>No filter</option>
+                <option v-for="filter in filtersStatus" :key="filter">{{filter}}</option>
             </select>
 
             <select class="filterType">
-                <option>choix 1</option>
-                <option>choix 2</option>
-                <option>choix 3</option>
+                <option>No filter</option>
+                <option v-for="filter in filtersType" :key="filter">{{filter}}</option>
             </select>
 
             <select class="filterFocus">
-                <option>choix 1</option>
-                <option>choix 2</option>
-                <option>choix 3</option>
+                <option>No filter</option>
+                <option v-for="filter in filtersFocus" :key="filter">{{filter}}</option>
             </select>
         </div>
     </div>
@@ -32,6 +29,37 @@ export default {
     name: 'Selection',
     props: {
         vesselsData: Array
+    },
+    computed: {
+        filtersStatus: function(){
+            let filters = []
+            for(let vessel of this.vesselsData){
+                if(!filters.includes(vessel.production_status)){
+                    filters.push(vessel.production_status)
+                }
+            }
+            return filters
+        },
+
+        filtersType: function(){
+            let filters = []
+            for(let vessel of this.vesselsData){
+                if(!filters.includes(vessel.type)){
+                    filters.push(vessel.type)
+                }
+            }
+            return filters
+        },
+
+        filtersFocus: function(){
+            let filters = []
+            for(let vessel of this.vesselsData){
+                if(!filters.includes(vessel.focus)){
+                    filters.push(vessel.focus)
+                }
+            }
+            return filters
+        }
     }
 }
 </script>
