@@ -2,23 +2,26 @@
 <template>
     <div class="selection">
         <!--search bar-->
-        <input class="search-bar" type="text" placeholder="Search a ship...">
+        <input class="search-bar" type="text" v-model="search" v-on:input="giveSearchContent" placeholder="Search a ship...">
 
         <!--Filters-->
         <div  class="filters">
-            <select class="filterStatus">
-                <option>No filter</option>
-                <option v-for="filter in filtersStatus" :key="filter">{{filter}}</option>
+            <p>Status</p>
+            <select class="filterStatus" v-model="fStatus" v-on:input="giveSearchContent">
+                <option value="none">none</option>
+                <option v-for="filter in filtersStatus" :key="filter" :value="filter">{{filter}}</option>
             </select>
 
-            <select class="filterType">
-                <option>No filter</option>
-                <option v-for="filter in filtersType" :key="filter">{{filter}}</option>
+            <p>Type</p>
+            <select class="filterType" v-model="fType" v-on:input="giveSearchContent">
+                <option value="none">none</option>
+                <option v-for="filter in filtersType" :key="filter" :value="filter">{{filter}}</option>
             </select>
 
-            <select class="filterFocus">
-                <option>No filter</option>
-                <option v-for="filter in filtersFocus" :key="filter">{{filter}}</option>
+            <p>Focus</p>
+            <select class="filterFocus" v-model="fFocus" v-on:input="giveSearchContent">
+                <option value="none">none</option>
+                <option v-for="filter in filtersFocus" :key="filter" :value="filter">{{filter}}</option>
             </select>
         </div>
     </div>
@@ -29,6 +32,21 @@ export default {
     name: 'Selection',
     props: {
         vesselsData: Array
+    },
+    data(){
+        return {
+            search:"",
+            fStatus:"none",
+            fType:"none",
+            fFocus:"none",
+        }
+    },
+    methods: {
+        giveSearchContent: function() {
+			this.$emit("giveSearchContent", this.search)
+            const filters = [this.fStatus, this.fType, this.fFocus]
+            this.$emit("giveFilters", filters)
+        }
     },
     computed: {
         filtersStatus: function(){
@@ -72,7 +90,6 @@ export default {
 .search-bar{
     width: 80%;
     margin-bottom: 50px;
-    margin-bottom: 50px;
     border-radius: 15px;
     border: grey solid 2px;
     padding: 5px;
@@ -83,9 +100,14 @@ export default {
     flex-direction: column;
 }
 
+.filters p{
+    color: ivory;
+    font-family : sans-serif;
+}
+
 select{
     width: 60%;
-    margin: 10px 0 10px 0;
+    margin: 0 0 10px 0;
     padding: 10px;
     background: none;
     border-radius: 0;

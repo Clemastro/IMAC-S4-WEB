@@ -1,7 +1,7 @@
 <template>
     <div class="showroom">
-        <Selection :vesselsData="vesselsData"/>
-        <VesselGalery :vesselsData="vesselsData"/>
+        <Selection :vesselsData="vesselsData" v-on:giveSearchContent="getSearchContent" v-on:giveFilters="getFilters"/>
+        <VesselGalery :vesselsData="vesselsData" v-bind:search.sync="searchContent" v-bind:filters="filters"/>
     </div>
 </template>
 
@@ -21,7 +21,9 @@ export default {
     },
     data(){
         return{
-            vesselsData: []
+            vesselsData: [],
+            searchContent: "",
+            filters: ["none", "none", "none"]
         }
     },
     created:function(){
@@ -30,6 +32,14 @@ export default {
     methods: {
         async retrieveVesselsData(){
             this.vesselsData = await getVesselsData()
+        },
+
+        getSearchContent: function(value){
+            this.searchContent = value
+        },
+
+        getFilters: function(array){
+            this.filters = array
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="vesselGalery">
-        <VesselCard v-for="vessel in vesselsData" 
+        <VesselCard v-for="vessel in filteredVesselData" 
             :key="vessel.id"  
             :vesselDataName="vessel.name"
             :vesselDataImg="vessel.media[0].images.background_blur"
@@ -20,8 +20,28 @@ export default {
         VesselCard
     },
     props:{
-        vesselsData : Array
+        vesselsData : Array,
+        search: String,
+        filters: Array
+    },
+    computed: {
+        filteredVesselData: function(){
+            const filterFunction = (vessel) => vessel.name.toLowerCase().includes(this.search.toLowerCase())
+            let data = this.vesselsData.filter(filterFunction)
+            if(this.filters[0] != "none" || !this.filters[0] != ""){
+                data = data.filter(vessel => vessel.production_status == this.filters[0])
+            }
+            if(this.filters[1] != "none"){
+                data = data.filter(vessel => vessel.type == this.filters[1])
+            }
+            if(this.filters[2] != "none"){
+                data = data.filter(vessel => vessel.focus == this.filters[2])
+            }
+            console.log(this.filters)
+            return data
+        }
     }
+
 }
 </script>
 
