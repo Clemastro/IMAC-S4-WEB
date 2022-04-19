@@ -35,7 +35,8 @@ export default {
     },
     data(){
         return {
-            search:"",
+            search: localStorage.getItem('search') || "",
+            filters: localStorage.getItem('filters') || [],
             fStatus:"none",
             fType:"none",
             fFocus:"none",
@@ -44,8 +45,16 @@ export default {
     methods: {
         giveSearchContent: function() {
 			this.$emit("giveSearchContent", this.search)
-            const filters = [this.fStatus, this.fType, this.fFocus]
-            this.$emit("giveFilters", filters)
+            this.filters = [this.fStatus, this.fType, this.fFocus]
+            this.$emit("giveFilters", this.filters)
+        }
+    },
+    watch: {
+        search: function(newSearch){
+            localStorage.setItem('search', newSearch)
+        },
+        filters: function(newFilters){
+            localStorage.setItem('filters', newFilters)
         }
     },
     computed: {
