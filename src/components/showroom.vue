@@ -47,9 +47,17 @@ export default {
 
 <style scoped>
 .showroom{
-    padding: 10%;
+    padding: 100px 5% 10% 5%;
     display: grid;
     grid-template-columns: 20% 80%;
     position: relative;
+}
+
+.vesselGalery{
+    grid-column: 2;
+}
+
+.selection{
+    width: 20%;
 }
 </style>

@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 .selection{
-    display: fixed;
+    position: fixed;
 }
 
 .search-bar{
