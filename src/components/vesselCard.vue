@@ -50,12 +50,14 @@ export default {
 h1 {
     height: 15%;
     padding-left: 2%;
-    padding-bottom: 2%;
+    padding-top: 2%;
     margin: 0%;
-    font-size: 2vw;
+    font-size: 100%;
     font-family : sans-serif;
+    font-style: bold;
     background: #84877D;
     color: white;
+    vertical-align: middle;
 }
 
 .vesselImg{
@@ -91,5 +93,10 @@ button{
     font-size: 0.5vw;
 }
 
+@media screen and (max-width: 950px){
+    button{
+        font-size: 1vw;
+    }
+}
 
 </style>

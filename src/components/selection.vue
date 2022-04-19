@@ -95,11 +95,6 @@ export default {
     padding: 5px;
 }
 
-.filters{
-    display: flex;
-    flex-direction: column;
-}
-
 .filters p{
     color: ivory;
     font-family : sans-serif;
@@ -109,10 +104,50 @@ select{
     width: 60%;
     margin: 0 0 10px 0;
     padding: 10px;
-    background: none;
+    background: #131A21;
     border-radius: 0;
     border: #064A7C solid 2px;
     color: rgb(202, 202, 202);
+}
+
+@media screen and (max-width: 600px){
+    .selection{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-bar{
+        margin: 0;
+        width: 30%;
+    }
+
+    .filters{
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filters p{
+        display: none;
+    }
+
+    .filters select{
+        margin: 0 2% 0 2%;
+    }
+}
+
+@media screen and (max-height: 570px){
+    .filters p{
+        margin: 2%;
+    }
+
+    .filters select{
+        margin: 2%;
+    }
 }
 
 </style>

@@ -25,11 +25,13 @@ export default {
 }
 
 a {
-    height: 10vh;
+    height: 5vw;
     margin-left: 15px;
+    min-height: 70px;
 }
 
 img{
-    max-height: 10vh;
+    max-height: 5vw;
+    min-height: 70px;
 }
 </style>

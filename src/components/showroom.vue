@@ -47,7 +47,8 @@ export default {
 
 <style scoped>
 .showroom{
-    padding: 100px 5% 10% 5%;
+    min-height: 78vh;
+    padding: 100px 5% 20px 5%;
     display: grid;
     grid-template-columns: 20% 80%;
     position: relative;
@@ -60,4 +61,26 @@ export default {
 .selection{
     width: 20%;
 }
+
+@media screen and (max-width: 950px){
+    .showroom{
+        grid-template-columns: 25% 75%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .showroom{
+        grid-template-columns: 0% 100%;
+    }
+
+    .selection{
+        width: 90%;
+        z-index: 1;
+    }
+
+    .vesselGalery{
+        margin-top: 15vw;
+    }
+}
+
 </style>
