@@ -1,5 +1,7 @@
 <template>
+    <!--The Header is composed as a simple banner with the logo of star-citizen-->
     <div class="header">
+        <!--The logo is also a link to go at the RSI website-->
         <a href="https://robertsspaceindustries.com/">
             <img alt="RSI" src="../assets/RSI_Logo.png">
         </a>

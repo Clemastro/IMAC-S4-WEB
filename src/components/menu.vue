@@ -1,26 +1,27 @@
-<!--Selection : apply a filter or search a ship-->
+<!--The menu permit to users to filter the ship galery-->
 <template>
-    <div class="selection">
-        <!--search bar-->
-        <input class="search-bar" type="text" v-model="search" v-on:input="giveSearchContent" placeholder="Search a ship...">
+    <div class="menu">
+        <!--search bar : get the text enter by users and linked to the variable "search"-->
+        <input class="search-bar" type="text" v-model="search" placeholder="Search a ship...">
 
-        <!--Filters-->
+        <!--Filters : users can apply 3 filter to refine a search thanks to 3 select. Each one are linked to a variable-->
+        <!--All option are base on the data from the API, each value possible are get from the prop vesselsData-->
         <div  class="filters">
             <p>Status</p>
-            <select class="filterStatus" v-model="fStatus" v-on:input="giveSearchContent">
-                <option value="none">none</option>
+            <select class="filterStatus" v-model="fStatus">
+                <option value="all">all</option>
                 <option v-for="filter in filtersStatus" :key="filter" :value="filter">{{filter}}</option>
             </select>
 
             <p>Type</p>
-            <select class="filterType" v-model="fType" v-on:input="giveSearchContent">
-                <option value="none">none</option>
+            <select class="filterType" v-model="fType">
+                <option value="all">all</option>
                 <option v-for="filter in filtersType" :key="filter" :value="filter">{{filter}}</option>
             </select>
 
             <p>Focus</p>
-            <select class="filterFocus" v-model="fFocus" v-on:input="giveSearchContent">
-                <option value="none">none</option>
+            <select class="filterFocus" v-model="fFocus">
+                <option value="all">all</option>
                 <option v-for="filter in filtersFocus" :key="filter" :value="filter">{{filter}}</option>
             </select>
         </div>
@@ -29,35 +30,56 @@
 
 <script>
 export default {
-    name: 'Selection',
+    name: 'Menu',
     props: {
+        //Receive API's datas from the parent showroom
         vesselsData: Array
     },
     data(){
         return {
-            search: localStorage.getItem('search') || "",
-            filters: localStorage.getItem('filters') || [],
-            fStatus:"none",
-            fType:"none",
-            fFocus:"none",
+            //Retrieve data from local storage at the creation, is they don't exist they use a default value
+            search : localStorage.getItem('search')       || "",
+            filters: [],
+            fStatus: localStorage.getItem('filterStatus') || "all",
+            fType  : localStorage.getItem('filterType')   || "all",
+            fFocus : localStorage.getItem('filterFocus')  || "all",
         }
     },
     methods: {
+        //Return search value
         giveSearchContent: function() {
-			this.$emit("giveSearchContent", this.search)
+			this.$emit("Search", this.search)
+        },
+
+        //Return filters
+        giveFilters: function() {
             this.filters = [this.fStatus, this.fType, this.fFocus]
-            this.$emit("giveFilters", this.filters)
-        }
+            this.$emit("Filters", this.filters)
+        },
     },
     watch: {
         search: function(newSearch){
+            this.giveSearchContent()
             localStorage.setItem('search', newSearch)
         },
-        filters: function(newFilters){
-            localStorage.setItem('filters', newFilters)
+
+        fStatus: function(newFilter){
+            this.giveFilters()
+            localStorage.setItem('filterStatus', newFilter)
+        },
+        fType: function(newFilter){
+            this.giveFilters()
+            localStorage.setItem('filterType', newFilter)
+        },
+        fFocus: function(newFilter){
+            this.giveFilters()
+            localStorage.setItem('filterFocus', newFilter)
         }
     },
+
     computed: {
+        //Here the options for the filters are get from the API and saved in an array to be read into the <select>
+        //Like this if the API add or remove data, the options will change
         filtersStatus: function(){
             let filters = []
             for(let vessel of this.vesselsData){
@@ -92,7 +114,7 @@ export default {
 </script>
 
 <style scoped>
-.selection{
+.menu{
     position: fixed;
 }
 
@@ -120,7 +142,7 @@ select{
 }
 
 @media screen and (max-width: 600px){
-    .selection{
+    .menu{
         display: flex;
         flex-direction: row;
         justify-content: center;

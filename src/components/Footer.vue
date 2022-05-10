@@ -1,4 +1,5 @@
 <template>
+    <!--The footer is composed as a simple banner with text-->
     <div class="footer">
         <p>C.BOURHIS - Copyright - 2022 | cgr | Mention Légale</p>
     </div>

@@ -26,6 +26,7 @@
 export default {
     name: 'VesselCard',
     props:{
+        //props get from the parent vesselGalery
         vesselDataName: String,
         vesselDataImg: String,
         vesselDataStatus: String,

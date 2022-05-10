@@ -1,5 +1,7 @@
+<!--Here we display all the vessel we want, and sort vesselsData with search and filters-->
 <template>
     <div class="vesselGalery">
+        <!--We use a v-for to display all vessel from the vesselsData array-->
         <VesselCard v-for="vessel in filteredVesselData" 
             :key="vessel.id"  
             :vesselDataName="vessel.name"
@@ -25,19 +27,22 @@ export default {
         filters: Array
     },
     computed: {
+        //Here we sort the data from vesselsData with the search and filters value
         filteredVesselData: function(){
-            const filterFunction = (vessel) => vessel.name.toLowerCase().includes(this.search.toLowerCase())
+            //sort with Search
+            const filterFunction = (vessel) => vessel.name.toLowerCase().includes(this.search.toLowerCase()) //We don't take imortance of Lowercase and Uppercase
             let data = this.vesselsData.filter(filterFunction)
-            if(this.filters[0] != "none" || !this.filters[0] != ""){
+            
+            //sort with Filters (0 -> Status | 1 -> Type |  2 -> Focus)
+            if(this.filters[0] != "all"){
                 data = data.filter(vessel => vessel.production_status == this.filters[0])
             }
-            if(this.filters[1] != "none"){
+            if(this.filters[1] != "all"){
                 data = data.filter(vessel => vessel.type == this.filters[1])
             }
-            if(this.filters[2] != "none"){
+            if(this.filters[2] != "all"){
                 data = data.filter(vessel => vessel.focus == this.filters[2])
             }
-            console.log(this.filters)
             return data
         }
     }
