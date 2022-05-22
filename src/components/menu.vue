@@ -141,8 +141,9 @@ select{
     color: rgb(202, 202, 202);
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 950px){
     .menu{
+        padding-right: 1vw;
         display: flex;
         flex-direction: row;
         justify-content: center;

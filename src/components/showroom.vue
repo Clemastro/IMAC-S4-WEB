@@ -61,22 +61,22 @@ export default {
     grid-column: 2;
 }
 
-.selection{
+.menu{
     width: 20%;
 }
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 1200px){
     .showroom{
         grid-template-columns: 25% 75%;
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 950px){
     .showroom{
         grid-template-columns: 0% 100%;
     }
 
-    .selection{
+    .menu{
         width: 90%;
         z-index: 1;
     }

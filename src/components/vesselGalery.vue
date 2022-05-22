@@ -58,7 +58,7 @@ export default {
     grid-row-gap: 10px;
 }
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 1200px){
     .vesselGalery{
         grid-template-columns: repeat(2, 1fr);
     }
